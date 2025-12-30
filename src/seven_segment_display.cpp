@@ -1,6 +1,6 @@
 /*
 Control a seven segment display.
-Count up from 0 to 9 and then back again?
+Count up from 0 to 9 and then back again
 */
 
 #include <Arduino.h>
