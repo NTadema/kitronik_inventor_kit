@@ -1,0 +1,72 @@
+/*
+Control a seven segment display.
+Count up from 0 to 9 and then back again?
+*/
+
+#include <Arduino.h>
+
+void setup()
+{
+  // define pin modes
+  
+ pinMode(2,OUTPUT); //Segment A
+ pinMode(3,OUTPUT); //Segment B
+ pinMode(4,OUTPUT); //Segment C
+ pinMode(5,OUTPUT); //Segment D
+ pinMode(6,OUTPUT); //Segment E
+ pinMode(7,OUTPUT); //Segment F
+ pinMode(8,OUTPUT); //Segment G
+ pinMode(9,OUTPUT); //Segment Decimal Point
+ 
+}
+
+ 
+ /* 
+  *  This array of 10 numbers shows the states of the pins for the segments 
+  *  to display the appropriate number. This is used to simplify the code
+  *  later - we can index the array to display the correct number.
+ */
+const bool Numbers[11][7] =  {
+                        {1,1,1,1,1,1,0}, //zero
+                        {0,1,1,0,0,0,0}, //one
+                        {1,1,0,1,1,0,1}, //two
+                        {1,1,1,1,0,0,1}, //three
+                        {0,1,1,0,0,1,1}, //four
+                        {1,0,1,1,0,1,1}, //five
+                        {1,0,1,1,1,1,1}, //six
+                        {1,1,1,0,0,0,0}, //seven
+                        {1,1,1,1,1,1,1}, //eight
+                        {1,1,1,0,0,1,1},  //nine
+                        {0,0,0,0,0,0,0}  //Clear Display
+  
+};
+
+#define ClearDisplay 10
+
+int displayNumber(int numberToDisplay)
+{
+  int pin = 2;
+  for(int segment =0;segment<7;segment++) 
+  {
+    digitalWrite(pin, Numbers[numberToDisplay][segment]);  
+    pin++;
+  }
+  return numberToDisplay;
+}
+
+void loop() 
+{
+  for(int i=0;i<10;i++)
+  {
+    displayNumber(i);
+    delay(600);
+  }
+  for(int i=9;i>=0;i--)
+  {
+   displayNumber(i);
+    delay(600);
+  }
+  displayNumber(ClearDisplay);
+   delay(1000);
+  
+}
