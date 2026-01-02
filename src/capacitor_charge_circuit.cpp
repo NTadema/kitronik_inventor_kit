@@ -4,7 +4,7 @@ Control a set of LEDs to show the charge in a capacitor.
 
 #include <Arduino.h>
 
-//define some human readable shorcutys for the pins of each LED
+//define some human readable shorcuts for the pins of each LED
 #define RED 2
 #define ORANGE 3
 #define YELLOW 4
